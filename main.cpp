@@ -7,7 +7,7 @@ using namespace std;
 #include "Vector.h"
 
 int main() {
-
+	cout << "EDITION TEST" << endl;
 	Integer* prueba = new Integer("-100000000000000000000000000000000");
 	Integer* prueba2 = new Integer("1");
 	Integer* prueba3 = new Integer("343464564564564654645");
