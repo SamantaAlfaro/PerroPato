@@ -35,9 +35,7 @@ public:
 	int sumar_vectores(Vector *,Vector*,Integer&, int);
 	int sumar_vector_extra(Vector*, int, Integer&);
 	Integer& operator -(Integer&);//resta
-	Integer& resta_nodos(Integer*);
-	bool resta_vectores(Vector*, Vector*, Integer&, bool);
-	bool resta_vectores_extra(Vector*, Integer&, bool); 
+	 
 	Integer& operator *(Integer&);//multiplica
 	Integer& operator /(ListaDobleEnlazada<Vector>&);//division
 
@@ -68,6 +66,8 @@ public:
 	void quitarCeros(string &n);
 
 	Integer& resta(Integer& num2);//el verdadero
+	Integer& factorial(unsigned short int num);//siempre positivos
+
 
 };
 //ostream& operator << (ostream&, Integer&);

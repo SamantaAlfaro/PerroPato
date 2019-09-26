@@ -343,8 +343,6 @@ Integer& Integer::resta(Integer& num2){
 		else {//siempre el mayor queda arriba
 			str1 = this->toString();
 			str2 = num2.toString();
-			//k = str1.length();
-			//l = str2.length();
 			if (str1[0] == '-') //quitarles los -
 				str1.erase(0, 1);
 			if (str2[0] == '-') //quitarles los -
@@ -408,6 +406,13 @@ Integer& Integer::resta(Integer& num2){
 	reverse(str.begin(), str.end());
 	nuevo->Agregar(str);
 	return *nuevo;
+}
+
+Integer& Integer::factorial(unsigned short int num){
+	string number = to_string(num);
+
+
+	// TODO: insertar una instrucción return aquí
 }
 
 
@@ -578,158 +583,6 @@ bool Integer::operator>=(Integer& i1) {
 
 void Integer::parse(string s) {
 	this->Agregar(s);
-	//return *this;
-}
-
-Integer& Integer::resta_nodos(Integer* integer) { //el this es el de arriba
-	Integer* nuevo = new Integer();
-	if (comparar_nodos(integer) && integer->getNegative() != negative) { //cuando son iguales y los dos son de diferente signo
-		nuevo->Agregar("0");
-		return *nuevo;
-	}
-	if (integer->getNegative() && negative) { //cuando los dos son negativos se suma
-		nuevo = &sumar_nodos(integer);
-		return *nuevo;
-	}
-	//alguno es negativo,por tanto, el resultado es negativo
-	Integer* aux1_i, * aux2_i;
-	int i = 0;//para saber cuando ya se acabo un integer y el otro todavia sigue con numeros
-	bool carry = false, aux_negative = false;
-	NodoDoble<Vector>* aux;
-	NodoDoble<Vector>* aux1;
-	//if (this->list->getTam() != integer->getList()->getTam()) {
-	if (this->list->getTam() > integer->getList()->getTam()) { //Se usara el que tenga mayor tama;o
-		aux = this->list->getHead();
-		aux1 = integer->getList()->getHead();
-		aux1_i = this;
-		aux2_i = integer;
-	}
-	else {//a uno pequeño le quito uno mas grande, el resultado es negativo al final
-		aux = integer->getList()->getHead();
-		aux1 = this->list->getHead();
-		aux1_i = integer;
-		aux2_i = this;
-		aux_negative = true;
-	}
-	//}
-	//else {
-	//	aux = this->list->getHead();
-	//	aux1 = integer->getList()->getHead();
-	//	aux1_i = this;
-	//	aux2_i = integer;
-	//}
-	while (aux != NULL) {//ir de nodo en nodo, 
-		if (i < aux2_i->getList()->getTam()) { //aux2_i es el de menor tam
-			carry = resta_vectores(aux->object, aux1->object, *nuevo, carry);
-			aux1 = aux1->next; //Para que no se pase de verga
-		}
-		else {//seguir con los nodos restantes
-			carry = resta_vectores_extra(aux->object, *nuevo, carry);
-		}
-		aux = aux->next;
-		i++;
-	}
-	if (aux_negative) {
-		nuevo->setNegative(true);
-	}
-	return *nuevo;
-}
-
-bool Integer::resta_vectores(Vector* v1, Vector* v2, Integer& nuevo, bool carry) //le tiene que entrar en v1 el vector de la lista grande ojo
-{
-	int aux1, aux2;
-	bool carry1 = carry;
-	long long int num;
-	Vector* v_aux1, * v_aux2;
-	string numero = "";
-	//if (v1->getCantidad() != v2->getCantidad()) {
-	if (v1->getCantidad() > v2->getCantidad()) {
-		aux1 = v1->getCantidad();
-		aux2 = v2->getCantidad();
-		v_aux1 = v1;
-		v_aux2 = v2;
-	}
-	else {
-		aux1 = v2->getCantidad();
-		aux2 = v1->getCantidad();
-		v_aux1 = v2;
-		v_aux2 = v1;
-	}
-	//}
-	/*else {
-		aux1 = v1->getCantidad();
-		aux2 = v2->getCantidad();
-		v_aux1 = v1;
-		v_aux2 = v2;
-	}*/
-	//recordar v_aux1 mayor cantidad, v_aux2 menor cantidad
-	string digit;
-	int digits, rest_aux, exponente;
-	for (int i = 0; i < aux1; i++) {
-		if (carry1) { //en el caso de que haya un carry
-			rest_aux = v_aux1->getNumero(i) - 1;//al numero de arriba se le quita 1
-		}
-		else { //en el caso que no haya carry
-			rest_aux = v_aux1->getNumero(i);//no se le quita nada
-		}
-		if (aux2 > i) { //si no se ha llegado al final del vector menor
-			if (rest_aux < v_aux2->getNumero(i)) { //en el caso de que el de arriba sea menor
-				num = (rest_aux * 10) - v_aux2->getNumero(i);
-				digit = to_string(rest_aux * 10);
-				digits = digit.length() - 1;
-				exponente = pow(10, digits);
-				num = num % exponente;
-				carry1 = true;
-				numero = to_string(num) + numero;
-			}
-			else {
-				num = rest_aux - v_aux2->getNumero(i);
-				carry1 = false;
-				numero = to_string(num) + numero;
-			}
-		}
-		else {
-			//v_aux1 signficia que es el que tiene mayor cantidad
-			numero = to_string(v_aux1->getNumero(i)) + numero;
-		}
-	}
-	nuevo.Agregar(numero);
-	return carry1; //retorna el carry para que lo reciba de nuevo en el proximo nodo
-}
-
-bool Integer::resta_vectores_extra(Vector* v, Integer& integer, bool carry) {
-	bool carry1 = carry;
-	long long int num;
-	string numero = "";
-	string digit;
-	int digits, exponente;
-	for (int i = 0; i < v->getCantidad(); i++) {
-		//num = v->getNumero(i) + carry1;
-		//carry1 = num / 1000000000;
-		//num = num % 1000000000;
-		//numero = to_string(num) + numero;
-		if (carry1) {
-			if (v->getNumero(i) < 1) {
-				num = v->getNumero(i) * 10 - 1;
-				digit = to_string(v->getNumero(i) * 10);
-				digits = digit.length() - 1;
-				exponente = pow(10, digits);
-				num = num % exponente;
-				carry1 = true;
-				numero = to_string(num) + numero;
-			}
-			else {
-				num = v->getNumero(i) - 1;
-				carry1 = false;
-				numero = to_string(num) + numero;
-			}
-		}
-		else {
-			numero = to_string(v->getNumero(i)) + numero;
-		}
-	}
-	integer.Agregar(numero);
-	return carry1;
 }
 
 Integer& Integer::operator*(Integer& I2) {
@@ -741,6 +594,6 @@ void Integer::operator+=(Integer& integer) {//no recibe esto...es this
 }
 
 void Integer::operator-=(Integer& integer) {
-	*this = resta_nodos(&integer);
+	*this = resta(integer);
 }
 
