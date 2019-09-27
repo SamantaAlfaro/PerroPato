@@ -297,9 +297,7 @@ Integer& Integer::operator-(Integer& integer) {
 
 string Integer::toString() {
 	string aux = list->ShowInvertedList();
-	//if (list->getTam() != 1)//si es solo un nodo
-		//quitarCeros(aux);
-	if (list->getTam() == 1 && list->getHead()->object->getNumero(0) == 0)
+	if (list->getTam() == 1 && list->getHead()->object->getCantidad()==1 && list->getHead()->object->getNumero(0) == 0)
 		aux = "0";
 	else quitarCeros(aux);
 	if (negative) {
@@ -433,12 +431,22 @@ Integer& Integer::resta(Integer& num2){
 	return *nuevo;
 }
 
-//Integer& Integer::factorial(unsigned short int num){
-//	string number = to_string(num);
-//
-//
-//	// TODO: insertar una instrucción return aquí
-//}
+Integer& Integer::factorial(Integer& num, Integer& aux){
+	if (num.toString() == "0")
+		return aux;
+	else
+		return num * factorial(num - aux, aux);
+	//Integer* nuevo = new Integer("1");//empieza con 1
+	
+									  
+	/*Integer i("1");
+	Integer contador("1");
+	while (i<=num) {
+		(*nuevo) *= i;
+		i += contador;
+	}
+	return *nuevo;*/
+}
 
 
 bool Integer::operator==(Integer& i1) {
@@ -625,5 +633,13 @@ void Integer::operator+=(Integer& integer) {//no recibe esto...es this
 
 void Integer::operator-=(Integer& integer) {
 	*this = resta(integer);
+}
+
+void Integer::operator*=(Integer& integer){
+	*this = multiplicacion(&integer);
+}
+
+void Integer::operator/=(Integer& integer){
+	*this = dividir(integer);
 }
 

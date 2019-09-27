@@ -44,8 +44,8 @@ public:
 
 	void operator +=(Integer&);//incremento
 	void operator -=(Integer&);//decremento
-	void operator *=(ListaDobleEnlazada<Vector>&);//multiplicacion propia
-	void operator /=(ListaDobleEnlazada<Vector>&);//division propia
+	void operator *=(Integer&);//multiplicacion propia
+	void operator /=(Integer&);//division propia
 
 
 	bool operator ==(Integer&) ;//comparacion
@@ -68,7 +68,7 @@ public:
 	Integer& dividir(Integer& divisor);
 
 	Integer& resta(Integer& num2);//el verdadero
-	Integer& factorial(unsigned short int num);//siempre positivos
+	Integer& factorial(Integer&, Integer&);//siempre positivos
 
 
 };
