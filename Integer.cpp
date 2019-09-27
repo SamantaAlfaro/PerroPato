@@ -293,12 +293,15 @@ int Integer::sumar_vector_extra(Vector* v, int carry, Integer& integer) {
 
 Integer& Integer::operator-(Integer& integer) {
 	return resta(integer);
-	//return resta_nodos(&integer);
 }
 
 string Integer::toString() {
 	string aux = list->ShowInvertedList();
-	quitarCeros(aux);
+	//if (list->getTam() != 1)//si es solo un nodo
+		//quitarCeros(aux);
+	if (list->getTam() == 1 && list->getHead()->object->getNumero(0) == 0)
+		aux = "0";
+	else quitarCeros(aux);
 	if (negative) {
 		return "-" + aux;
 	}
@@ -314,6 +317,7 @@ void Integer::quitarCeros(string &n) {
 		}
 	}
 }
+
 
 
 Integer& Integer::dividir(Integer& divisor) {
@@ -575,13 +579,12 @@ bool Integer::comparar_vectores_menor(Vector* v1, Vector* v2) {
 
 
 bool Integer::operator<=(Integer& i1) {
-	//si son iguales o menores
-	if (comparar_nodos(&i1) || comparar_nodos_menor(&i1)) {
+	if(comparar_nodos(&i1)) {
 		return true;
 	}
-	else {
-		return false;
-	}
+	//compara a ver si son mayores o menores
+	else 
+	return !comparar_nodos_menor(&i1);	
 }
 
 bool Integer::operator>(Integer& i) {
@@ -595,8 +598,10 @@ bool Integer::operator>(Integer& i) {
 }
 
 bool Integer::operator>=(Integer& i1) {
-	//si son iguales o NO son menores
-	if (comparar_nodos(&i1) || !comparar_nodos_menor(&i1)) {
+	if (comparar_nodos(&i1)) {
+		return true;
+	}
+	else if (comparar_nodos_menor(&i1)) {
 		return true;
 	}
 	else return false;

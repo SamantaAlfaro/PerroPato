@@ -170,12 +170,6 @@ string ListaDobleEnlazada<T>::ShowInvertedList() {
 	if (!start) //lista vacia
 		aux << "\nEMPTY LIST :c ...\n";
 	else {
-	/*	int i = 1;
-		NodoDoble<T>* tmp = start;
-		while (tmp->next != NULL) {
-			tmp = tmp->next;
-			++i;
-		}*/
 		NodoDoble<T>* tmp = end;
 		while (tmp != NULL) {
 			aux << *(tmp->object);
@@ -184,7 +178,5 @@ string ListaDobleEnlazada<T>::ShowInvertedList() {
 	}
 	return aux.str();
 }//fin lista Invertida
-
-
 
 #endif // !LISTA_SIMPLE_H
