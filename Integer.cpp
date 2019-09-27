@@ -320,6 +320,11 @@ Integer& Integer::resta(Integer& num2){
 	string str1;
 	string str2;
 	//resta 
+	if (*this == num2 && ((!this->getNegative() && !num2.getNegative())
+		|| (this->getNegative() && num2.getNegative()))) {
+		nuevo->Agregar("-1");
+		return *nuevo;
+	}
 	if (this->negative && num2.negative || !this->negative && !num2.negative) {//si ambos son negativos
 		if (*this < num2) {//si el de la izquierda es el menor, entonces por dentro, el izq es el mayor en los negativos
 			str2 = this->toString();//el menor
