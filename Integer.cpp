@@ -431,22 +431,34 @@ Integer& Integer::resta(Integer& num2){
 	return *nuevo;
 }
 
-Integer& Integer::factorial(Integer& num, Integer& aux){
-	if (num.toString() == "0")
-		return aux;
-	else
-		return num * factorial(num - aux, aux);
-	//Integer* nuevo = new Integer("1");//empieza con 1
-	
-									  
-	/*Integer i("1");
+Integer& Integer::factorial(Integer& num){
+	Integer* nuevo = new Integer("1");//empieza con 1							  
+	Integer i("1");
 	Integer contador("1");
 	while (i<=num) {
 		(*nuevo) *= i;
 		i += contador;
 	}
-	return *nuevo;*/
+	return *nuevo;
 }
+
+Integer& Integer::fibonacci(Integer& num){
+	Integer aux1("0");
+	Integer aux2("1");
+	Integer sig, primero("0"), segundo("1");
+	for (aux1; aux1 < num; aux1+=aux2) {
+		if (aux1 < aux2)// < 1
+			sig = aux1;
+		else {
+			sig = primero + segundo;
+			primero = segundo;
+			segundo = sig;
+		}
+	}
+	Integer* nuevo = new Integer(sig);
+	return *nuevo;
+}
+ 
 
 
 bool Integer::operator==(Integer& i1) {

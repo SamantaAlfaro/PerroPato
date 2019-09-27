@@ -68,8 +68,8 @@ public:
 	Integer& dividir(Integer& divisor);
 
 	Integer& resta(Integer& num2);//el verdadero
-	Integer& factorial(Integer&, Integer&);//siempre positivos
-
+	Integer& factorial(Integer&);//siempre positivos
+	Integer& fibonacci(Integer&);
 
 };
 //ostream& operator << (ostream&, Integer&);

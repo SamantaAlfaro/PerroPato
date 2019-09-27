@@ -7,10 +7,10 @@ using namespace std;
 
 int main() {
 	Integer* prueba = new Integer("1000");
-	Integer* prueba2 = new Integer("1");
+	Integer* prueba2 = new Integer("2");
 
-	Integer nuevo = prueba->factorial(*prueba, *prueba2);
-	//Integer nuevo = (*prueba2)+(*prueba);
+	Integer nuevo = prueba->fibonacci(*prueba);
+	//Integer nuevo = (*prueba)/(*prueba2);
 	cout << nuevo.toString()<<endl;
 	//nuevo += *prueba;
 
