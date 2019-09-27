@@ -7,14 +7,11 @@ using namespace std;
 #include "Vector.h"
 
 int main() {
-	cout<<"HARINA"<<endl;//jajajajajaja
-	cout << ":D" << endl;
-	cout << "EDITION TEST" << endl;
-	Integer* prueba = new Integer("-100000000000000000000000000000000");
-	Integer* prueba2 = new Integer("1");
+	Integer* prueba = new Integer("49");
+	Integer* prueba2 = new Integer("7");
 	Integer* prueba3 = new Integer("343464564564564654645");
 	
-	Integer nuevo = (*prueba)-(*prueba2);
+	Integer nuevo = (*prueba)/(*prueba2);
 	//Integer nuevo = (*prueba2)+(*prueba);
 	cout << nuevo.toString()<<endl;
 	//nuevo += *prueba;

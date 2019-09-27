@@ -37,7 +37,7 @@ public:
 	Integer& operator -(Integer&);//resta
 	 
 	Integer& operator *(Integer&);//multiplica
-	Integer& operator /(ListaDobleEnlazada<Vector>&);//division
+	Integer& operator /(Integer&);//division
 
 	
 
@@ -64,6 +64,8 @@ public:
 
 	string toString();
 	void quitarCeros(string &n);
+
+	Integer& dividir(Integer& divisor);
 
 	Integer& resta(Integer& num2);//el verdadero
 	Integer& factorial(unsigned short int num);//siempre positivos

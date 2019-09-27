@@ -315,6 +315,22 @@ void Integer::quitarCeros(string &n) {
 	}
 }
 
+
+Integer& Integer::dividir(Integer& divisor) {
+	Integer aux1(this->toString());
+	Integer aux(divisor.toString());
+	Integer* contador = new Integer();
+	contador->Agregar("0");
+
+	Integer uno("1");
+	while (aux <= aux1) {
+		string s = (aux1 - aux).toString();
+		aux1 = *new Integer(s);
+		*contador += uno;
+	}
+	return *contador;
+}
+
 Integer& Integer::resta(Integer& num2){
 	Integer* nuevo = new Integer();
 	string str1;
@@ -413,12 +429,12 @@ Integer& Integer::resta(Integer& num2){
 	return *nuevo;
 }
 
-Integer& Integer::factorial(unsigned short int num){
-	string number = to_string(num);
-
-
-	// TODO: insertar una instrucción return aquí
-}
+//Integer& Integer::factorial(unsigned short int num){
+//	string number = to_string(num);
+//
+//
+//	// TODO: insertar una instrucción return aquí
+//}
 
 
 bool Integer::operator==(Integer& i1) {
@@ -592,6 +608,10 @@ void Integer::parse(string s) {
 
 Integer& Integer::operator*(Integer& I2) {
 	return multiplicacion(&I2);
+}
+
+Integer& Integer::operator/(Integer& num){
+	return dividir(num);
 }
 
 void Integer::operator+=(Integer& integer) {//no recibe esto...es this
