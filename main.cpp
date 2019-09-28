@@ -6,16 +6,24 @@ using namespace std;
 #include "Vector.h"
 
 int main() {
-	Integer* prueba = new Integer("1000");
-	Integer* prueba2 = new Integer("2");
+	Integer* prueba = new Integer("1000000000000000000000000000000000000000000000000000000000000000000000");
+	Integer* prueba2 = new Integer("1000000000000000000000000000000000000000000000000000000000000000001");
 
-	Integer nuevo = prueba->fibonacci(*prueba);
+	//Integer nuevo = (*prueba)-(*prueba2);
 	//Integer nuevo = (*prueba)/(*prueba2);
-	cout << nuevo.toString()<<endl;
+	//cout << nuevo.toString()<<endl;
 	//nuevo += *prueba;
 
 	//(*prueba2) *= (*prueba);
 	//cout << prueba2->toString();
+	if (*prueba < *prueba2) {
+		cout << "good";
+	}
+	else
+		cout << "Fx1000";
+
+
+
 
 	delete prueba;
 	delete prueba2;

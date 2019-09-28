@@ -67,9 +67,15 @@ public:
 
 	Integer& dividir(Integer& divisor);
 
-	Integer& resta(Integer& num2);//el verdadero
-	Integer& factorial(Integer&);//siempre positivos
+	Integer& resta(Integer& num2);
+	//Integer& factorialCola(Integer& uno, Integer &dos);
+	//el verdadero
+	Integer& factorial(Integer&);
+	
+	//siempre positivos
 	Integer& fibonacci(Integer&);
+
+	Integer& Combinatoria(Integer& uno, Integer& dos);
 
 };
 //ostream& operator << (ostream&, Integer&);

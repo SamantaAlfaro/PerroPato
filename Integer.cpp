@@ -319,17 +319,22 @@ void Integer::quitarCeros(string &n) {
 
 
 Integer& Integer::dividir(Integer& divisor) {
-	Integer aux1(this->toString());
+	Integer *aux1 = new Integer(this->toString());
 	Integer aux(divisor.toString());
-	Integer* contador = new Integer();
-	contador->Agregar("0");
-
+	Integer* contador = new Integer("0");
+	Integer help;
 	Integer uno("1");
-	while (aux <= aux1) {
-		string s = (aux1 - aux).toString();
-		aux1 = *new Integer(s);
+	while (aux <= *aux1) {//mientras el divisor sea menor al numero
+		cout<<(aux).toString()<<"\n\n";
+		help = (*aux1 - aux);
+		//cout << (aux).toString() << "\n\n";
+		cout << help.toString()<<"\n\n";
+		string s = help.toString();
+		*aux1 = *new Integer(s);
+		//cout << (*aux1).toString();
 		*contador += uno;
 	}
+	delete aux1;
 	return *contador;
 }
 
@@ -344,6 +349,8 @@ Integer& Integer::resta(Integer& num2){
 		return *nuevo;
 	}
 	if (this->negative && num2.negative || !this->negative && !num2.negative) {//si ambos son negativos
+		cout << this->toString()<< "\n\n";
+		cout << num2.toString() << "\n\n";
 		if (*this < num2) {//si el de la izquierda es el menor, entonces por dentro, el izq es el mayor en los negativos
 			str2 = this->toString();//el menor
 			str1 = num2.toString();//el mayor
@@ -431,16 +438,30 @@ Integer& Integer::resta(Integer& num2){
 	return *nuevo;
 }
 
-Integer& Integer::factorial(Integer& num){
+Integer& Integer::factorial(Integer& num) {
 	Integer* nuevo = new Integer("1");//empieza con 1							  
 	Integer i("1");
 	Integer contador("1");
-	while (i<=num) {
+	while (i <= num) {
 		(*nuevo) *= i;
 		i += contador;
 	}
 	return *nuevo;
 }
+//
+//Integer& Integer::factorialCola(Integer & uno, Integer &dos) {
+//	Integer i("1");//empieza en 1 hasta N
+//	if(uno == i){//n==1
+//		return dos;
+//	}
+//	Integer* nuevo = new Integer();
+//	*nuevo = (factorialCola(uno - i, uno * dos));
+//	return *nuevo;
+//
+//
+//}
+
+
 
 Integer& Integer::fibonacci(Integer& num){
 	Integer aux1("0");
@@ -456,6 +477,15 @@ Integer& Integer::fibonacci(Integer& num){
 		}
 	}
 	Integer* nuevo = new Integer(sig);
+	return *nuevo;
+}
+
+
+Integer& Integer::Combinatoria(Integer& uno, Integer&dos) {
+	Integer* nuevo = new Integer();
+	Integer aux1(uno);
+	Integer aux2(dos);
+	*nuevo = (factorial(aux1) / (factorial(aux2) * factorial(aux1-aux2)));
 	return *nuevo;
 }
  
@@ -563,12 +593,12 @@ bool Integer::comparar_nodos_menor(Integer* integer) {
 	NodoDoble<Vector>* aux1 = integer->getList()->getEnd();
 	while (aux != NULL) {
 		if (comparar_vectores_menor(aux->object, aux1->object)) { //esta negado ya que va a devolver false apenas haya un mayor
-			return false;
+			return false;//esto es false
 		}
 		aux = aux->previous;
 		aux1 = aux1->previous;
 	}
-	return true;
+	return true;//era true
 }
 
 //IR COMPARANDO VECTORES DE LOS NODOS
