@@ -1,7 +1,8 @@
+//Lista_Doble.h
+//utores: Dafhnne Alfaro Cruz, Carlos Zhou Zheng, David Vargas
+//Descripcion: Clase que contiene vectores para almacenar el Integer en secciones, template
 #ifndef LISTA_SIMPLE_H
 #define LISTA_SIMPLE_H
-
-
 #include <iostream>
 #include <sstream>
 using namespace std;
@@ -31,6 +32,7 @@ public:
 	virtual int getTam();
 	virtual NodoDoble<T>* getHead();
 	virtual NodoDoble<T>* getEnd();
+	void setHead(NodoDoble<T>*);
 };//fin lista doblemente enlazada
 template <class T>
 NodoDoble<T>* ListaDobleEnlazada<T>::getEnd() {
@@ -47,9 +49,14 @@ int ListaDobleEnlazada<T>::getTam() {
 	return tam;
 }
 
+template<class T>
+void ListaDobleEnlazada<T>::setHead(NodoDoble<T>* aux){
+	this->start = aux;}
+
 template <class T>
 ListaDobleEnlazada<T>::ListaDobleEnlazada() {
 	start = NULL;
+	end = NULL;
 	tam = 0;
 }
 
@@ -62,6 +69,8 @@ ListaDobleEnlazada<T>::~ListaDobleEnlazada() {
 		delete tmp;
 	}
 	tam = 0;
+	start=NULL;
+	end=NULL;
 }
 
 template <class T>

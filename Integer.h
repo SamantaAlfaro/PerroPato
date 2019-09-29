@@ -1,13 +1,15 @@
-#ifndef INTEGER
-#define INTEGER
-#define ZERO 0
-#define UNO 1
+//Integer.h
+//utores: Dafhnne Alfaro Cruz, Carlos Zhou Zheng, David Vargas
+//Descripcion: clase princial con sobrecargas de operadores para realizar calculos con 
+//			   numeros de orden arbitrario
+#ifndef INTEGER_H
+#define INTEGER_H
 #include <string>
 using namespace std;
 
 #include "Vector.h"
 #include "Lista_Doble.h"
-
+#include "Utiles.h"
 
 class Integer {
 private:
@@ -15,72 +17,63 @@ private:
 	bool negative;
 public:
 	Integer();//sin parametros
+	Integer(const Integer&);//constructor copia
 	Integer(string);
-	Integer(Integer&);//constructor copia
-	Integer& operator = (Integer& int2);//sobrecarga del operador de asignacion
+	Integer& operator =(Integer&);//sobrecarga del operador de asignacion
 	~Integer();
-	/*ayudas*/
-	char intTochar(int n);//este lo ocupa
-	int charToint(char n);//este lo ocupa
-	Integer& multiplicacion(Integer*);//este lo ocupa
-
 	bool getNegative();
 	void setNegative(bool negative);
 	ListaDobleEnlazada<Vector>* getList();
-	void Agregar(string num);
-	void AgregarVerdadero(string num);
 
-	Integer& operator +(Integer&);//suma
-	Integer& sumar_nodos(Integer*);
-	int sumar_vectores(Vector *,Vector*,Integer&, int);
-	int sumar_vector_extra(Vector*, int, Integer&);
-	Integer& operator -(Integer&);//resta
-	 
-	Integer& operator *(Integer&);//multiplica
-	Integer& operator /(Integer&);//division
-
-	
-
-
-	void operator +=(Integer&);//incremento
-	void operator -=(Integer&);//decremento
-	void operator *=(Integer&);//multiplicacion propia
-	void operator /=(Integer&);//division propia
-
-
-	bool operator ==(Integer&) ;//comparacion
-	bool comparar_nodos(Integer*); //Recorre la lista
-	bool comparar_vectores(Vector* v1, Vector* v2); //Recorre el vector
-
-	bool operator !=(Integer&);//distinto
-	bool operator <(Integer&);//menor
-	bool comparar_nodos_menor(Integer*);
-	bool comparar_vectores_menor(Vector*, Vector*);
-	bool operator <=(Integer&);//menor igual
-	bool operator >(Integer&);//mayor
-	bool operator >=(Integer&);//mayor igual
-
+	//Funciones para convertir una cadena de caracteres a un Integer
 	void parse(string);//pasa de string a Integer
-
+	void Agregar(string num);
+	void AgregarVerdadero(string num);//llama al parse(string)
 	string toString();
-	void quitarCeros(string &n);
 
-	Integer& dividir(Integer& divisor);
+	/*Operador Suma y metodos a usar*/
+	Integer& operator +(Integer&);
+	void operator +=(Integer&);
+	Integer& Sumar_Nodos(Integer*);
+	int Sumar_Vectores(Vector*, Vector*, Integer&, int);
+	int Sumar_Vector_Extra(Vector*, int, Integer&);
 
-	Integer& resta(Integer& num2);
-	//Integer& factorialCola(Integer& uno, Integer &dos);
-	//el verdadero
-	Integer& factorial(Integer&);
+	/*Operador Resta & Resta= con metodo a usar*/
+	Integer& operator -(Integer&);
+	void operator -=(Integer&);
+	Integer& Resta(Integer& num2);
+
+	/*Operador Multiplicacion y metodos a usar*/
+	Integer& operator *(Integer&);
+	void operator *=(Integer&);
+	Integer& Multiplicacion(Integer*);
 	
-	//siempre positivos
+
+	/*Operador Division & Division= con metodos a usar*/
+	Integer& operator /(Integer&);
+	void operator /=(Integer&);
+	Integer& dividir(Integer&);
+
+	/*Comparativas*/
+	bool operator ==(Integer&) ;	
+	bool operator !=(Integer&);
+	bool operator <(Integer&);
+	bool operator <=(Integer&);
+	bool operator >(Integer&);
+	bool operator >=(Integer&);
+
+	/*Metodos para comparar == y menores*/
+	bool Comparar_Nodo(Integer*); //Recorre la lista
+	bool Comparar_Vectores(Vector* v1, Vector* v2); //Recorre el vector
+	bool Comparar_Nodos_Menor(Integer*);
+	bool Comparar_Vectores_Menor(Vector*, Vector*);
+	/*estos estan mientras tanto*/
+	bool CompararConString(Integer&);
+	bool CompararMenorConString(Integer&);
+
+	//Funciones a implementar
+	Integer& factorial(Integer&);
 	Integer& fibonacci(Integer&);
-
-	Integer& Combinatoria(Integer& uno, Integer& dos);
-
+	Integer& Combinatoria(Integer&, Integer&);
 };
-//ostream& operator << (ostream&, Integer&);
-
-
-
-#endif // !INTEGER
-
+#endif // !INTEGER_H

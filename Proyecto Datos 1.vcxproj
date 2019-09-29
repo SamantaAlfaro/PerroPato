@@ -117,11 +117,13 @@
   <ItemGroup>
     <ClInclude Include="Integer.h" />
     <ClInclude Include="Lista_Doble.h" />
+    <ClInclude Include="Utiles.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Integer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Utiles.cpp" />
     <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

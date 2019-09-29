@@ -1,3 +1,7 @@
+//Vector.h
+//Autores: Dafhnne Alfaro Cruz, Carlos Zhou Zheng, David Vargas
+//Descripcion: Definicion de la clase vector con un arreglo estatico para almacenar un maximo
+//			   de 27 digitos (9 digitos por celda)
 #ifndef VECTOR
 #define VECTOR
 #define SIZE 3
